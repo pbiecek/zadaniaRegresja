@@ -11,6 +11,14 @@ regression(...)
 vary depending on a problem that Beta and Bit are trying to solve. See
 \code{Details} in order to learn more about the list of possible arguments.}
 }
+\value{
+Function returns one of three possible values:
+\itemize{
+  \item{\code{TRUE} if you provided correct answer to a task,}
+  \item{\code{FALSE} if you provided wrong answer to a task,}
+  \item{\code{NULL} if function can't identify task you wanted to answer.}
+}
+}
 \description{
 The \code{regression} function is used for solving problems in the data-based
 game "The regression Game".
@@ -47,6 +55,5 @@ regression(hint = TRUE)
 }
 \author{
 Tomasz Żółtak - the idea and the implementation,
-Przemyslaw Biecek - comments and the integration with this package.
 }
 

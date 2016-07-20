@@ -7,7 +7,7 @@
 regression(...)
 }
 \arguments{
-\item{...}{\code{regression} function is called by different arguments, which
+\item{...}{\code{regression} function is called with different arguments, which
 vary depending on a problem that Beta and Bit are trying to solve. See
 \code{Details} in order to learn more about the list of possible arguments.}
 }
@@ -25,19 +25,22 @@ game "The regression Game".
 }
 \details{
 Every time when some additional hints are needed one should add
-\code{hint = TRUE} argument to the \code{regression} function.
+\code{hint = TRUE} or \code{techHint = TRUE} argument to the \code{regression} function.
+Technical hints will point out R packages and/or functions which might help
+you to solve the task while "normal" hints provide you with methodological
+advices.
 
 In this game you are helping a Professor Pearson.
-You can communicate with him through \code{regression} function.
+You can communicate with him through the \code{regression} function.
 
-In each call add \code{subject} parameter that will indicate which message
-you are answering. Add \code{content} parameter. It's value should match the
-information that the professor has asked you to provide him.
+In each call inlclude the \code{subject} parameter (indicating which task
+you are trying to answer) and the \code{content} parameter (providing
+information professor Pearson is asking you for in a given task).
 
 Data used in the game comes frome the study of Polish upper-secondary
-schools first grade students. It was conducted firstly in the same time as
-PISA 2009 study, with use of the same cognitive tests and questionnaires as
-in PISA 2009, but on a different group of students (in Poland most of the
+schools first grade students. It was conducted together with the
+PISA 2009 study using the same cognitive tests and questionnaires as
+in PISA 2009 but on a different group of students (in Poland most of the
 students in a PISA sample attends lower-secondary schools). The students who
 participated in the first wave of the study were followed in the 2nd grade of
 upper-secondary school within the reserach program \emph{Our further study
@@ -52,6 +55,7 @@ SmarterPoland.pl Foundation.
 \examples{
 regression()
 regression(hint = TRUE)
+regression(techHint = TRUE)
 }
 \author{
 Tomasz Żółtak - the idea and the implementation,

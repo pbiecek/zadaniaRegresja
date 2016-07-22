@@ -68,7 +68,7 @@ regression <- function(...) {
     task1 =
       paste0(
         "Dear Beta and Bit,\n",
-        "\nI sent you a dataset named 'dataDNiP' for an analysis. An additional dataset called 'varLabs' contains variable labels so that you can check what each variable measures.\n",
+        "\nI sent you a dataset named 'dataDNiP' for an analysis. An additional dataset called 'varLabels' contains variable labels so that you can check what each variable measures.\n",
         "\nLet's start with something simple. Can you compute for me the correlations between the measures of cognitive abilities (`MATH_2009`, `READ_2009`, `SCIE_2009`) and the highest parental International Socio-Economic Index `hisei`?\n",
         "\nYou should get three correlations.\n",
         "\nPlease send me back a vector containing these three correlations by calling:\n",

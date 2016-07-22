@@ -59,71 +59,72 @@ regression <- function(...) {
     notSoFar = "Solve previous tasks first!",
     regressionInit =
       paste0(
-        "During their summer internship Beta and Bit are helping professor Pearson to analyze data from his educational reserch of Polish upper-secondary schools students.\n",
-        "\nProfessor is mostly interested in educational inequalities, particularly in how socio-economic status of parents affects educational attainments of their children. He hopes that his research will help to develop programs providing support to young people from disadvantaged families and reducing inequalities in our society.\n",
+        "During their summer internship Beta and Bit are helping professor Pearson to analyse data from his educational research on Polish upper-secondary schools students.\n",
+        "\nProfessor Pearson is mostly interested in educational inequalities, particularly in how the socio-economic status of the parents affects their children's educational attainment. He hopes his research will help to develop programmes providing support to young people from disadvantaged families and reducing inequalities in our society.\n",
         "\nIf you want to help Beta and Bit in their analysis, type:\n",
         "  regression(subject = \"Summer internship\")\n",
-        "\nIf you need help try adding `hint = TRUE` argument to a call of the `regression()` function."
+        "\nIf you need help, try to add `hint = TRUE` and/or `techHint = TRUE` argument to the `regression()` function call."
       ),
     task1 =
       paste0(
-        "Dear Beta and Bit\n",
-        "\nI sent you a dataset named 'dataDNiP'. Please conduct analysis on it. Additional dataset 'varLabs' contnains variable labels so you can check what is measurd by each variable.\n",
-        "\nAt first something rather simple. Can you compute for me correlations between measures of cognitive abilities: `MATH_2009`, ``READ_2009`, `SCIE_2009` and the highest parental International Socio-Economic Index `hisei`?\n",
-        "\nPlease send me back a vector containing this three correlations by calling:\n",
+        "Dear Beta and Bit,\n",
+        "\nI sent you a dataset named 'dataDNiP' for an analysis. An additional dataset called 'varLabs' contains variable labels so that you can check what each variable measures.\n",
+        "\nLet's start with something simple. Can you compute for me the correlations between the measures of cognitive abilities (`MATH_2009`, `READ_2009`, `SCIE_2009`) and the highest parental International Socio-Economic Index `hisei`?\n",
+        "\nYou should get three correlations.\n",
+        "\nPlease send me back a vector containing these three correlations by calling:\n",
         "  `regression(subject = \"Correlations\", content = \"vector of correlations\")`\n",
         "\nBest regards\n\nProfessor Pearson\n"
       ),
     task2 =
       paste0(
-        "Dear Beta and Bit\n",
-        "\nThe correlations you provided very strange. They should be positive and about twice higher! Perhaps there is something wrong with the dataset... I think that I mixed names of the variables when I was preapering the dataset. I'm sure that first sixteen names are correct, but other ones may be a mess.\n",
-        "\nCan you try to identify what is the name of the variable in the dataset that measures HISEI? You should by able to find it because I rememeber that relationship between `READ_2009` and the real `hisei` was nearly perfectly linear (although not very strong).\n",
-        "\nWhen yoy're done please send me back a name of the variable that describes HISEI by calling:\n",
+        "Dear Beta and Bit,\n",
+        "\nThe correlations you sent me are very strange. They should be positive and about twice as high! Perhaps there is something wrong with the dataset... I think that I mixed names of the variables when I was preparing the dataset. I'm sure the first sixteen names are correct, but the rest might be a mess.\n",
+        "\nCan you try to identify the name of the variable that measures HISEI in the dataset? You should by able to find it because I remember that the relationship between `READ_2009` and HISEI was nearly perfectly linear (although not very strong).\n",
+        "\nWhen you're done, please send me back the correct name of the variable that describes HISEI by calling:\n",
         "  `regression(subject = \"Name of the variable\", content = \"name of the variable describing HISE\")`\n",
         "\nBest regards\n\nProfessor Pearson\n"
       ),
     task3 =
       paste0(
         "Good work!\n",
-        "\nLuckily I found the correct version of the dataset. I sent it to you. It is named simply `DNiP`. Please, use it for further analysis.\n",
-        "\nNow I want you to help me with analyzing the relationship between attainments of students and income of their parents. I estimated a OLS regression model in which score on the test of reading abilities is predicted by two variables: `cultpos` (index describing availability of cultural resources in a household) and `income` (monthly houshold income).:\n",
+        "\nLuckily, I found the correct version of the dataset. I sent it to you. It is named simply `DNiP`. Please, use it for further analysis.\n",
+        "\nNow I want you to help me with analysing the relationship between the students' attainment and the income of their parents. I estimated an OLS regression model in which the reading test score is predicted by two variables: `cultpos` (index describing the availability of cultural resources in a household) and `income` (monthly houshold income):\n",
         "  `lm(READ_2009 ~ cultpos + income, DNiP)`\n",
-        "Although I don't expect impact of income to be strong when availability of cultural resources is controlled it should rather be statistically significant.\n",
-        "\nI think that skewness of a distribution of `inocome` may cause some problems in the model. Perhaps you will be able to propose some (nonlinear) transformation of `income`, so that the transformed variable is stronger related with `READ_2009` and statistically significant (on a 0.05 signifficance level) when put instead of `income` into the regression model I described.\n",
-        "\nPlease, send me an expression describing such a transformation by calling:\n",
+        "Although I don't expect the income effect to be strong when the availability of cultural resources is controlled for, it should be statistically significant.\n",
+        "\nI think the skewness of the `income` distribution might cause some problems in the model. Perhaps you could propose a (nonlinear) transformation of `income`, so that the transformed variable is more strongly related to `READ_2009` and statistically significant (on a 0.05 significance level) when put instead of the original variable `income` into the regression model described above.\n",
+        "\nPlease, send me the expression describing such a transformation by calling:\n",
         "  `regression(subject = \"transformation\", content = expression(your transformation of income))`\n",
         "\nBest regards\n\nProfessor Pearson\n"
       ),
     task4 =
       paste0(
-        "Very well!\n",
+        "Very good!\n",
         "\ncomment on 3rd task\n",
-        "\nPlease look at a somewhat more complicated model. I wanted to examine impact of multiple variables on reading test scores (`READ_2009`). There are variables describing sex, school type (track), a set of indicators of socio-economic status of student's family (`log(income)`, `homepos`, `hisei`, `csesi`) and a set of psychological tests scores (`RAVEN_WYN`, `STAI_C_WYN`, `STAI_S_WYN`, `SES_WYN`, `ZAMPS_WYN`). I estimate the model with:\n",
+        "\nPlease look at a somewhat more complicated model. I wanted to examine impact of multiple variables on reading test scores (`READ_2009`). There are variables describing sex and school type (track), and indicators of socio-economic status of student's family (`log(income)`, `homepos`, `hisei`, `csesi`) and of psychological tests scores (`RAVEN_WYN`, `STAI_C_WYN`, `STAI_S_WYN`, `SES_WYN`, `ZAMPS_WYN`). I estimate the model with:\n",
         "  `lm(READ_2009 ~ SEX + SCHOOL_TYPE + log(income) + homepos + hisei + csesi + RAVEN_WYN + STAI_C_WYN + STAI_S_WYN + SES_WYN + ZAMPS_WYN, DNiP)`\n",
         "\nHowever, although each variable alone is a statistically signifficant predictor of `READ_2009` most of them turns out to be insignifficant in this model.\n",
-        "\nPerhaps the problem lies in some relationship between predictors themselves... it's called \"collinearity\", or something like this... Newertheless I think that removing a few variables from the model shuld help other variables to became statistically signifficant.\n",
-        "\nPlease find out which variables should be removed so that all other are signifficant at 0.05 signifficance level and so to remove the least variables possible.\n",
-        "\nIf you're done, send me names of the variables to remove by calling:\n",
+        "\nPerhaps the problem lies in some relationship between the predictors ... it's called \"collinearity\", or something like that... I think that removing some variables from the model will make the remaining ones statistically significant.\n",
+        "\nPlease find out which variables should be removed so that the remaining ones are significant at the 0.05 significance level. You should remove as few variables as possible.\n",
+        "\nIf you're done, send me the names of the variables to remove by calling:\n",
         "  `regression(subject = \"Collinearity\", content = character_vector_with_names_of_removed_variables)`\n",
         "\nBest regards\n\nProfessor Pearson\n"
       ),
     task5 =
       paste0(
         "It looks fine!\n",
-        "\nI wonder if you tried to remove variables of some special properties or simply coded an automation to check all of the possible combinations od variables to remove :)\n",
-        "\nLet's get back to the relationship between `hisei` and `READ_2009'. I wonder if it looks quite the same within different schools in the sample. It's interesting wheather it is something a general relationship or maybe it depends on a school context.\n",
-        "\nCan you provide me a data frame consisting two columns: `SCHOOL_ID` and `par_hisei`. The first is self descriptive and the second should contain values of the slope parameter for `hisei` (from OLS regression model) in each school.\n",
-        "\nWhen you finish, please send me such a data frame by calling:\n",
+        "\nI wonder whether you have tried to remove variables of some special properties or have simply written a code that checks all possible combinations of the predictors...\n",
+        "\nLet's get back to the relationship between `hisei` and `READ_2009'. I wonder if it looks similar within different schools in the sample. It might be a general relationship or it might depend on a school context.\n",
+        "\nCan you provide me a data frame consisting of two columns: `SCHOOL_ID` and `par_hisei`? The first column is self-descriptive and the second one should contain values of the slope parameter for `hisei` (from the OLS regression model) in each school.\n",
+        "\nWhen you finish, please send me the data frame by calling:\n",
         "  `regression(subject = \"Groups\", content = data_frame_containig_results`\n",
         "\nBest regards\n\nProfessor Pearson\n"
       ),
     task6 =
       paste0(
         "Great!\n",
-        "\nDid you performed different regression in each group or used one model with interaction term between `hisei` and `factor(SCHOOL_ID)`?\n",
-        "\nThe variabilty between schools seems not to be high with repsect to this parameters. However lets try to identify schools with higher difference.\n",
-        "\nThe mean value of the slope parameter among schools is about 0.434. Can you identify schools for which the slope parameter value for `hisei` is statistically significantly different (at 0.05 signifficance level) from this mean value among schools? I want you to do this using two-sided Wald t test (or F test, which is equivalent in this case) on the basis OLS regression model (or its reparametrisation):\n",
+        "\nDid you perform different regressions in each group or used one model with an interaction term between `hisei` and `factor(SCHOOL_ID)`?\n",
+        "\nThe variability between schools does not seem to be high with respect to the `hisei` parameter. However let's try to identify schools with bigger differences.\n",
+        "\nThe mean value of the slope parameter among schools is about 0.434. Can you identify schools for which the slope parameter value of `hisei` is statistically significantly different (at the 0.05 significance level) from the mean value among schools (0.434)? I want you to do this using the two-sided Wald t test (or the F test, which is equivalent in this case) on the basis of the OLS regression model (or its reparametrisation):\n",
         "  lm(READ_2009 ~ hisei * factor(SCHOOL_ID), DNiP)\n",
         "\nAs a result please send me a vector of `SCHOOL_ID` of the schools for which the slope parameter value is statistically significantly different from mean by calling:\n",
         "  `regression(subject = \"Significant differences\", content = vector_of_school_ids)`\n",
@@ -133,47 +134,47 @@ regression <- function(...) {
       paste0(
         "Well done!\n",
         "\ncomment on 6th task\n",
-        "\nNow let's turn to a little different issue. It's well known that in lower grades cognitive abilities, as measured by for exaple `READ_2009`, depends on age of students. At the upper-secondary level this impact is probably much lower or even nonexistent but we should check this.\n",
-        "\nThere is also one issue that complicates the analysis. In the sample there are students who started schooling a year before they were supposed to (in Poland children are supposed to start primary school at the age of 7). These students are not representative for their cohort. If they started learning earlier, they are probably a gifted ones. On the other hand there are also older students then typical age at the first grade of Polish upper-secondary school. These are students who started learning later than they were supposed to or those who repeated a grade while in schooling. Irrespective which of this two alternatives is true we may say that they're \"negatively selected\", i.e. they have rather lower cognitive abilities than other students of their age (who are out of our sample, because at the moment of study was conducted they already learned in upper grades).\n",
-        "\nBecause of these relationships between `RAVEN_AGE` and `READ_2009` is perhaps not continous and looks different in some ranges of age than in other. Your task is to check how this relationship looks like and to propose a linear model describing it in a proper way.\n",
-        "\nPlease, send me a formula of the model by calling:\n",
+        "\nNow let's turn to a little different issue. It's well known that in lower grades the cognitive abilities, as measured by for example in `READ_2009`, depend on pupils' age. At the upper-secondary level this effect is probably much lower or even non-existent but we should check it.\n",
+        "\nThere is another issue that complicates the analysis. In the sample there are students who started school one year earlier than they were supposed to (normally children in Poland start primary school at the age of 7 but under certain conditions they can start when they are 6 years old). These pupils are not representative for their cohort because they are selective (they are brighter than the average). On the other hand there are also pupils who are older than they should be. These are pupils who either started school one year later than they were supposed to or repeated a grade. Whatever the reason we can describe them as \"negatively selected\", i.e. they have usually lower cognitive abilities than other pupils of their age (who are not in our sample because when the study was conducted they were already in an upper grade).\n",
+        "\nBecause of that the relationship between `RAVEN_AGE` and `READ_2009` is perhaps not continuous: it can look different in some ranges of age than in others. Your task is to check how this relationship looks like and to propose a linear model describing it in a proper way.\n",
+        "\nPlease, send me the formula of the model by calling:\n",
         "  `regression(subject = \"Age\", content = READ_2009 ~ your_formula`\n",
-        "\nGenerally your formula should contain transformations of only one variable: `RAVEN_AGE`. If you find it more convient not to use explicit transformations in the formula (using `I()` or other functions), you can send me a formula containg additional variables you want to create. In such a case you must call `regression()` function with additional argument `vars` that will contain named list of expressions describing how to compute this additional variables. Nevertheless you can construct them only as  transformations of `RAVEN_AGE`. Here is example of such a call:\n",
+        "\nGenerally, your formula should contain transformations of only one variable: `RAVEN_AGE`. If you find it more convenient not to use explicit transformations in the formula (using `I()` or other functions), you can send me a formula containing additional variables you want to create. In such case you must call `regression()` function with an additional argument `vars` that will contain a named list of the expressions describing how to compute the additional variables. Nevertheless you can construct them only as transformations of `RAVEN_AGE`. Here is an example of such a call:\n",
         "  `regression(subject = \"age\", content = READ_2009 ~ RAVEN_AGE + AGE3, vars = list(AGE3 = expression(RAVEN_AGE^3)))`\n",
         "\nBest regards\n\nProfessor Pearson\n"
       ),
     congratulations =
       paste0(
         "Congratulations!\n",
-        "You have solved all the problems and greatly helped me analasig the data! Im sure that the answers you find will enable me to better understand causes of educational inequalities and thus develop effective ways to reduce it.\n",
-        "\nI wish you many interesting and chalanging analytical problems to solve in the future!\n",
+        "You have solved all the problems and helped me analyse the data! I’m sure that your solutions will enable me to understand the causes of educational inequalities better and thus develop effective ways to reduce them.\n",
+        "\nI wish you many interesting and challenging analytical problems to solve in the future!\n",
         "\nProfessor Pearson\n"
       ),
-    hint0 = "No hint (but there may be technical one - try `techHint=TRUE`)",
-    hint1 = "No hint (but there may be technical one - try `techHint=TRUE`)",
-    hint2 = "If the relationship is linear, quality of prediction from a regression model can't be improved by adding nonlinear terms to a model formula.\n",
-    hint3 = "The distribution of `income` is highly right-skeewed while the distribution of `READ_2009` is quite symmetric around mean. Try to find such a transformation that can reduce this right-skeewnes of `income` (\"shorten its long tail\").\n",
-    hint4 = "No hint (but there may be technical one - try `techHint=TRUE`)\n",
-    hint5 = "You can try two ways to deal with this: either estimate separate regression model in each school (some automation will be desirable) or estimate one model with interaction term (remember that `SCHOOL_ID` as it is in the dataset is not a factor). In this latter case you will probably have to transform results a little to get the values you're interested in.\n",
+    hint0 = "No hint (but there might be a technical one - try `techHint=TRUE`)\n",
+    hint1 = "No hint (but there might be a technical one - try `techHint=TRUE`)\n",
+    hint2 = "If the relationship is linear, the quality of the prediction from a regression model can't be improved by adding nonlinear terms.\n",
+    hint3 = "The distribution of `income` is highly right-skewed while the distribution of `READ_2009` is quite symmetric around mean. Try to find such a transformation that can reduce the right-skewness of `income` (i.e. that can \"shorten its long tail\").\n",
+    hint4 = "A combination of different methods is needed to provide the right solution.\n",
+    hint5 = "You can try two ways to deal with this: either estimate separate regression model for each school (some automation will be desirable) or estimate one model with an interaction term (remember that in the dataset `SCHOOL_ID` is not given as a factor). In the latter case you will probably have to transform the results a little to get the values you're interested in.\n",
     hint6 = paste0(
-      "You can try to reparametrize the regression model by using proper contrast so the differences of interest will be a model parameters. For the brief introduction to contrasts you can take a look at http://www.ats.ucla.edu/stat/r/library/contrast_coding.htm (unfortunately examples are in Stata).\n",
-      "Alternatively you can compute the Wald test for all schools on your own.\n"
+      "You can try to reparametrize the regression model by using proper contrasts so that the differences of interest will be model parameters. For a brief introduction to contrasts you can consult http://www.ats.ucla.edu/stat/r/library/contrast_coding.htm.\n",
+      "Alternatively you can compute the Wald test for all schools slope coefficients.\n"
     ),
-    hint7 = "The best way to know how a complex relationship between two variables generally looks like is graphical diagnostics.\n",
+    hint7 = "The best way to see how a complex relationship between two variables generally looks like is to use graphical diagnostics.\n",
     techHint0 = "Just type `regression(subject = \"Summer internship\")` into the console and hit `enter`.\n",
-    techHint1 = "Try to use function `cor()`. Remember to specify argument `use` when calling it.\n",
+    techHint1 = "Try to use the function `cor()`. Remember to specify the argument `use` when calling it.\n",
     techHint2 = paste0(
-      "You can estimate a linear model using the `lm()` function (see `?lm` for details and examples).\n",
-      "Coefficients as well as most important goodnes of fit measures can be obtained by running the `summary()` function on the model object returned by `lm()`."
+      "You can estimate a linear model using the `lm()` function.\n",
+      "Coefficients as well as most important goodness-of-fit measures can be obtained by running the `summary()` function on the model object returned by `lm()`."
     ),
-    techHint3 = "You can visualize distribution of a continues variable using combination of `plot()` and `density()` functions.\n",
-    techHint4 = "Look into the functions provided by the `car` package. One of the should provide colinearity diagnostics\n",
-    techHint5 = "No hint (but there may be methodological one - try `hint=TRUE`)\n",
+    techHint3 = "You can visualise the distribution of a continuous variable using the combination of `plot()` and `density()` functions.\n",
+    techHint4 = "The `vif()` function form the `car` package provides a collinearity diagnostics.\n",
+    techHint5 = "No hint (but there might be a methodological one - try `hint=TRUE`)\n",
     techHint6 = paste0(
-      "You can use `C(data, contrastFunction)` function to set the variable contrast. There are many ready to use functions generating contrasts - see functions which name starts with `contr.`.\n",
-      "If you decided to compute the Wald test on your own, you can obtain coefficient values and their standard errors from `summary(model)$coef`.\n"
+      "You can use the `C(data, contrastFunction)` function to set the variable contrast. There are many ready-to-use functions generating contrasts (look for functions whose names start with `contr.`).\n",
+      "If you have decided to compute the Wald test, you can obtain the coefficient values and their standard errors from `summary(model)$coef`.\n"
     ),
-    techHint7 = "You can try to use `geom_points()` and `geom_smooth()` from the `ggplot2` package or, if you are not familiar with `ggplot` simply the `plot()` function.\n"
+    techHint7 = "You can try to use `geom_points()` and `geom_smooth()` from the `ggplot2` package or, if you are not familiar with `ggplot2`, simply use the `plot()` function.\n"
   )
 
   if (length(args) == 0) {

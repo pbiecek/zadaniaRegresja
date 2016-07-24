@@ -116,7 +116,7 @@ regression <- function(...) {
         "\nLet's get back to the relationship between `hisei` and `READ_2009'. I wonder if it looks similar within different schools in the sample. It might be a general relationship or it might depend on a school context.\n",
         "\nCan you provide me a data frame consisting of two columns: `SCHOOL_ID` and `par_hisei`? The first column is self-descriptive and the second one should contain values of the slope parameter for `hisei` (from the OLS regression model) in each school.\n",
         "\nWhen you finish, please send me the data frame by calling:\n",
-        "  `regression(subject = \"Groups\", content = data_frame_containig_results`\n",
+        "  `regression(subject = \"Groups\", content = data_frame_containig_results`)\n",
         "\nBest regards\n\nProfessor Pearson\n"
       ),
     task6 =

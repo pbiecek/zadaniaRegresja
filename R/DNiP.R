@@ -5,7 +5,7 @@
 #' group of students: first grade students of upper-secondary schools (in Poland
 #' most of the students in a regular PISA sample attends lower-secondary
 #' schools). The students who participated in the first wave of the study were
-#' followed in the 2nd grade of upper-secondary school within the reserach
+#' followed in the 2nd grade of upper-secondary school within the research
 #' program \emph{Our further study and work} (\emph{Nasza Dalsza Nauka i Praca}).
 #' Both studies were conducted by the Institute of Philosophy and Sociology
 #' Polish Academy of Sciences.
@@ -18,3 +18,4 @@
 #' @name DNiP
 #' @format data frame: 3796 obs. of 54 variables
 NULL
+

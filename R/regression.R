@@ -17,17 +17,17 @@
 #' In this game you are helping a Professor Pearson.
 #' You can communicate with him through the \code{regression} function.
 #'
-#' In each call inlclude the \code{subject} parameter (indicating which task
+#' In each call include the \code{subject} parameter (indicating which task
 #' you are trying to answer) and the \code{content} parameter (providing
 #' information professor Pearson is asking you for in a given task).
 #'
-#' Data used in the game comes frome the study of Polish upper-secondary
+#' Data used in the game comes from the study of Polish upper-secondary
 #' schools first grade students. It was conducted together with the
 #' PISA 2009 study using the same cognitive tests and questionnaires as
 #' in PISA 2009 but on a different group of students (in Poland most of the
 #' students in a PISA sample attends lower-secondary schools). The students who
 #' participated in the first wave of the study were followed in the 2nd grade of
-#' upper-secondary school within the reserach program \emph{Our further study
+#' upper-secondary school within the research program \emph{Our further study
 #' and work} (\emph{Nasza Dalsza Nauka i Praca}). Both studies were conducted by
 #' the Institute of Philosophy and Sociology Polish Academy of Sciences.
 #' \strong{The original data was changed a little, to better fit the purpose of
@@ -88,7 +88,7 @@ regression <- function(...) {
       paste0(
         "Good work!\n",
         "\nLuckily, I found the correct version of the dataset. I sent it to you. It is named simply `DNiP`. Please, use it for further analysis.\n",
-        "\nNow I want you to help me with analysing the relationship between the students' attainment and the income of their parents. I estimated an OLS regression model in which the reading test score is predicted by two variables: `cultpos` (index describing the availability of cultural resources in a household) and `income` (monthly houshold income):\n",
+        "\nNow I want you to help me with analysing the relationship between the students' attainment and the income of their parents. I estimated an OLS regression model in which the reading test score is predicted by two variables: `cultpos` (index describing the availability of cultural resources in a household) and `income` (monthly household income):\n",
         "  `lm(READ_2009 ~ cultpos + income, DNiP)`\n",
         "Although I don't expect the income effect to be strong when the availability of cultural resources is controlled for, it should be statistically significant.\n",
         "\nI think the skewness of the `income` distribution might cause some problems in the model. Perhaps you could propose a (nonlinear) transformation of `income`, so that the transformed variable is more strongly related to `READ_2009` and statistically significant (on a 0.05 significance level) when put instead of the original variable `income` into the regression model described above.\n",
@@ -102,7 +102,7 @@ regression <- function(...) {
         "\ncomment on 3rd task\n",
         "\nPlease look at a somewhat more complicated model. I wanted to examine impact of multiple variables on reading test scores (`READ_2009`). There are variables describing sex and school type (track), and indicators of socio-economic status of student's family (`log(income)`, `homepos`, `hisei`, `csesi`) and of psychological tests scores (`RAVEN_WYN`, `STAI_C_WYN`, `STAI_S_WYN`, `SES_WYN`, `ZAMPS_WYN`). I estimate the model with:\n",
         "  `lm(READ_2009 ~ SEX + SCHOOL_TYPE + log(income) + homepos + hisei + csesi + RAVEN_WYN + STAI_C_WYN + STAI_S_WYN + SES_WYN + ZAMPS_WYN, DNiP)`\n",
-        "\nHowever, although each variable alone is a statistically signifficant predictor of `READ_2009` most of them turns out to be insignifficant in this model.\n",
+        "\nHowever, although each variable alone is a statistically significant predictor of `READ_2009` most of them turns out to be insignificant in this model.\n",
         "\nPerhaps the problem lies in some relationship between the predictors ... it's called \"collinearity\", or something like that... I think that removing some variables from the model will make the remaining ones statistically significant.\n",
         "\nPlease find out which variables should be removed so that the remaining ones are significant at the 0.05 significance level. You should remove as few variables as possible.\n",
         "\nIf you're done, send me the names of the variables to remove by calling:\n",
@@ -536,3 +536,4 @@ regression <- function(...) {
 
   return(invisible(NULL))
 }
+

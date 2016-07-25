@@ -15,7 +15,7 @@
 #'
 #' @docType data
 #' @keywords datasets
-#' @name DNiP
+#' @name dataFSW
 #' @format data frame: 3796 obs. of 54 variables
 NULL
 

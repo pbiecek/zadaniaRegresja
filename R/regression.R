@@ -43,7 +43,12 @@
 #'   \item{\code{NULL} if function can't identify task you wanted to answer.}
 #' }
 #' @author
-#' Tomasz Żółtak - the idea and the implementation,
+#' \itemize{
+#'   \item{Tomasz Zoltak - the idea and the implementation,}
+#'   \item{Mateusz Zoltak - comments, contribution to hints,}
+#'   \item{Zuzanna Brzozowska - proofreading,}
+#'   \item{Przemyslaw Biecek - comments and the integration with the `BetaBitRgame` and `BetaBit` packages.}
+#' }
 #' @examples
 #' regression()
 #' regression(hint = TRUE)
@@ -68,7 +73,7 @@ regression <- function(...) {
     task1 =
       paste0(
         "Dear Beta and Bit,\n",
-        "\nI sent you a dataset named 'dataDNiP' for an analysis. An additional dataset called 'varLabels' contains variable labels so that you can check what each variable measures.\n",
+        "\nI sent you a dataset named 'dataFSW' for an analysis. An additional dataset called 'varLabels' contains variable labels so that you can check what each variable measures.\n",
         "\nLet's start with something simple. Can you compute for me the correlations between the measures of cognitive abilities (`MATH_2009`, `READ_2009`, `SCIE_2009`) and the highest parental International Socio-Economic Index `hisei`?\n",
         "\nYou should get three correlations.\n",
         "\nPlease send me back a vector containing these three correlations by calling:\n",
@@ -87,9 +92,9 @@ regression <- function(...) {
     task3 =
       paste0(
         "Good work!\n",
-        "\nLuckily, I found the correct version of the dataset. I sent it to you. It is named simply `DNiP`. Please, use it for further analysis.\n",
+        "\nLuckily, I found the correct version of the dataset. I sent it to you. It is named simply `FSW`. Please, use it for further analysis.\n",
         "\nNow I want you to help me with analysing the relationship between the students' attainment and the income of their parents. I estimated an OLS regression model in which the reading test score is predicted by two variables: `cultpos` (index describing the availability of cultural resources in a household) and `income` (monthly household income):\n",
-        "  `lm(READ_2009 ~ cultpos + income, DNiP)`\n",
+        "  `lm(READ_2009 ~ cultpos + income, FSW)`\n",
         "Although I don't expect the income effect to be strong when the availability of cultural resources is controlled for, it should be statistically significant.\n",
         "\nI think the skewness of the `income` distribution might cause some problems in the model. Perhaps you could propose a (nonlinear) transformation of `income`, so that the transformed variable is more strongly related to `READ_2009` and statistically significant (on a 0.05 significance level) when put instead of the original variable `income` into the regression model described above.\n",
         "\nPlease, send me the expression describing such a transformation by calling:\n",
@@ -101,7 +106,7 @@ regression <- function(...) {
         "Very good!\n",
         "\ncomment on 3rd task\n",
         "\nPlease look at a somewhat more complicated model. I wanted to examine impact of multiple variables on reading test scores (`READ_2009`). There are variables describing sex and school type (track), and indicators of socio-economic status of student's family (`log(income)`, `homepos`, `hisei`, `csesi`) and of psychological tests scores (`RAVEN_WYN`, `STAI_C_WYN`, `STAI_S_WYN`, `SES_WYN`, `ZAMPS_WYN`). I estimate the model with:\n",
-        "  `lm(READ_2009 ~ SEX + SCHOOL_TYPE + log(income) + homepos + hisei + csesi + RAVEN_WYN + STAI_C_WYN + STAI_S_WYN + SES_WYN + ZAMPS_WYN, DNiP)`\n",
+        "  `lm(READ_2009 ~ SEX + SCHOOL_TYPE + log(income) + homepos + hisei + csesi + RAVEN_WYN + STAI_C_WYN + STAI_S_WYN + SES_WYN + ZAMPS_WYN, FSW)`\n",
         "\nHowever, although each variable alone is a statistically significant predictor of `READ_2009` most of them turns out to be insignificant in this model.\n",
         "\nPerhaps the problem lies in some relationship between the predictors ... it's called \"collinearity\", or something like that... I think that removing some variables from the model will make the remaining ones statistically significant.\n",
         "\nPlease find out which variables should be removed so that the remaining ones are significant at the 0.05 significance level. You should remove as few variables as possible.\n",
@@ -125,7 +130,7 @@ regression <- function(...) {
         "\nDid you perform different regressions in each group or used one model with an interaction term between `hisei` and `factor(SCHOOL_ID)`?\n",
         "\nThe variability between schools does not seem to be high with respect to the `hisei` parameter. However let's try to identify schools with bigger differences.\n",
         "\nThe mean value of the slope parameter among schools is about 0.434. Can you identify schools for which the slope parameter value of `hisei` is statistically significantly different (at the 0.05 significance level) from the mean value among schools (0.434)? I want you to do this using the two-sided Wald t test (or the F test, which is equivalent in this case) on the basis of the OLS regression model (or its reparametrisation):\n",
-        "  lm(READ_2009 ~ hisei * factor(SCHOOL_ID), DNiP)\n",
+        "  lm(READ_2009 ~ hisei * factor(SCHOOL_ID), FSW)\n",
         "\nAs a result please send me a vector of `SCHOOL_ID` of the schools for which the slope parameter value is statistically significantly different from mean by calling:\n",
         "  `regression(subject = \"Significant differences\", content = vector_of_school_ids)`\n",
         "\nBest regards\n\nProfessor Pearson\n"
@@ -147,7 +152,7 @@ regression <- function(...) {
       paste0(
         "Congratulations!\n",
         "You have solved all the problems and helped me analyse the data! I’m sure that your solutions will enable me to understand the causes of educational inequalities better and thus develop effective ways to reduce them.\n",
-        "\nI wish you many interesting and challenging analytical problems to solve in the future!\n",
+        "\nI wish you many interesting and challenging analytical problems to solve in the future! Remember: per aspera ad astra!\n",
         "\nProfessor Pearson\n"
       ),
     hint0 = "No hint (but there might be a technical one - try `techHint=TRUE`)\n",
@@ -226,7 +231,7 @@ regression <- function(...) {
         cat(textsRegression$wrongAnswer)
         return(invisible(FALSE))
       }
-    # zadanie 2. - diagnostyka liniowości
+    # zadanie 2. - diagnostyka liniowosci
     } else if (args$subject == "name of the variable") {
       if ("hint" %in% names(args)) {
         cat(textsRegression$hint2)
@@ -252,7 +257,7 @@ regression <- function(...) {
         cat(textsRegression$wrongAnswer)
         return(invisible(FALSE))
       }
-    # zadanie 3. - przekształcenie zmiennej niezależnej
+    # zadanie 3. - przeksztalcenie zmiennej niezaleznej
     } else if (args$subject == "transformation") {
       if ("hint" %in% names(args)) {
         cat(textsRegression$hint3)
@@ -273,7 +278,7 @@ regression <- function(...) {
         return(invisible(FALSE))
       }
       incomeTr = tryCatch(
-        eval(args$content[1], zadaniaRegresja::DNiP),
+        eval(args$content[1], zadaniaRegresja::FSW),
         error = function(e) {
           cat(
             "Trying to evaluate your expression: `",
@@ -288,7 +293,7 @@ regression <- function(...) {
       if (is.null(incomeTr)) {
         return(invisible(FALSE))
       }
-      mTemp = with(zadaniaRegresja::DNiP, lm(READ_2009 ~ cultpos + incomeTr))
+      mTemp = with(zadaniaRegresja::FSW, lm(READ_2009 ~ cultpos + incomeTr))
       if (summary(mTemp)$coef[3, 4] <= 0.05) {
         functionsUsed = setdiff(all.names(args$content[1]), "income")
         if (
@@ -296,20 +301,11 @@ regression <- function(...) {
           all(functionsUsed %in% c("log2", "log10"))
         ) {
           commentReplace =
-                paste0("It's nice you decided to use logarithmic transformation. ",
-                       "The slope parameter for transformed income has clear ",
-                       "interpretation: that's the change in prediction when ",
-                       "the value of income rises ",
+                paste0("It's nice you decided to use logarithmic transformation. The slope parameter for transformed income has clear interpretation: that's the change in prediction when the value of income rises ",
                        ifelse(functionsUsed == "log2", "twice", "ten times"), ".")
         } else if (length(functionsUsed) == 1 &
                    all(functionsUsed %in% "log")) {
-          commentReplace =
-              paste0(
-                "It's nice you decided to use logarithmic transformation. ",
-                "However if you used base 2 or 10 instead of e, it would be",
-                "a little easier to interpret the slope parameter coefficient",
-                "value."
-              )
+          commentReplace = "It's nice you decided to use logarithmic transformation. However if you used base 2 or 10 instead of e, it would be a little easier to interpret the slope parameter coefficient value. It looks quite good, but there is still a little problem. Perhaps there is something wrong with a way you determine value of SCHOOL_ID on the basis of the names (or perhaps order) of the model contrasts (dummie variables). Please, check what values of SCHOOL_ID appear in the dataset and compare with how they are described in names of the model contrasts."
         } else {
           commentReplace = paste0(
             "Note however that if you used base 2 logarithm to ",
@@ -322,14 +318,14 @@ regression <- function(...) {
           commentReplace,
           textsRegression$task4
         )
-        # trzeba zbadać rozwiązanie i podmienić komentarz do niego
+        # trzeba zbadac rozwiazanie i podmienic komentarz do niego
         cat(textsRegression$task4)
         return(invisible(TRUE))
       } else {
         cat("Ufortunately after this transformation `income` is still insignifficant.\n")
         return(invisible(FALSE))
       }
-    # zadanie 4. - współliniowość
+    # zadanie 4. - wspolliniowosc
     } else if (args$subject == "collinearity") {
       if ("hint" %in% names(args)) {
         cat(textsRegression$hint4)
@@ -365,7 +361,7 @@ regression <- function(...) {
       varsTemp = setdiff(varsTemp, args$content)
       varsTemp = sub("income", "log(income)", varsTemp)
       varsTemp = formula(paste("READ_2009 ~ ", paste(varsTemp, collapse = "+")))
-      mTemp = lm(varsTemp, zadaniaRegresja::DNiP)
+      mTemp = lm(varsTemp, zadaniaRegresja::FSW)
       if (any(summary(mTemp)$coef[-1, 4] > 0.05)) {
         cat("Unfortunately, there is/are still some insignificant parameter(s) in the model.\n")
         print(summary(mTemp))
@@ -394,7 +390,8 @@ regression <- function(...) {
       if (
         all.equal(
           args$content$par_hisei,
-          zadaniaRegresja::answers[[5]]
+          zadaniaRegresja::answers[[5]],
+          tolerance = 0.001
         )[1] %in% TRUE
       ) {
         cat(textsRegression$task6)
@@ -403,7 +400,7 @@ regression <- function(...) {
         cat(textsRegression$wrongAnswer)
         return(invisible(FALSE))
       }
-    # zadanie 6. - istotność różnic (interakcje II)
+    # zadanie 6. - istotnosc roznic (interakcje II)
     } else if (args$subject == "significant differences") {
       if ("hint" %in% names(args)) {
         cat(textsRegression$hint6)
@@ -419,12 +416,12 @@ regression <- function(...) {
       } else if (!is.numeric(args$content)) {
         cat("Argument `content` must be a vector of mode `numeric`.\n")
         return(invisible(FALSE))
-      } else if (!all(args$content %in% zadaniaRegresja::DNiP$SCHOOL_ID)) {
-        cat("Some values you gave don't appear in `DNiP$SCHOOL_ID`.\n")
+      } else if (!all(args$content %in% zadaniaRegresja::FSW$SCHOOL_ID)) {
+        cat("Some values you gave don't appear in `FSW$SCHOOL_ID`.\n")
         return(invisible(FALSE))
       } else if (
         any(sapply(
-          zadaniaRegresja::answers[[6]],
+          zadaniaRegresja::answers[[6]][1:2],
           function(x, y) {return(all(y %in% x))},
           y = args$content
         ))
@@ -441,6 +438,15 @@ regression <- function(...) {
         )
         cat(textsRegression$task7)
         return(invisible(TRUE))
+      } else if (
+        any(sapply(
+          zadaniaRegresja::answers[[6]][3:4],
+          function(x, y) {return(all(y %in% x))},
+          y = args$content
+        ))
+      ) {
+        cat("You are close to the right solution but it looks like you messed up SCHOOL_ID values/labels. Please compare SCHOOL_ID values from the dataset and the contrasts variables names in the model. If you use `contr.sum`, note that it does not use names (labels) of factor levels to construct names of contrasts (and this is behaviour different to what `contr.treatment` does).\n")
+        return(invisible(FALSE))
       } else {
         cat(textsRegression$wrongAnswer)
         return(invisible(FALSE))
@@ -482,7 +488,7 @@ regression <- function(...) {
         }
         varsTemp = lapply(args$vars, function(x) {
           return(tryCatch(
-            eval(x, zadaniaRegresja::DNiP),
+            eval(x, zadaniaRegresja::FSW),
             error = function(e) {
               cat(
                 "Trying to evaluate your expression: `",
@@ -498,13 +504,13 @@ regression <- function(...) {
         if (any(sapply(varsTemp, is.null))) {
           return(invisible(FALSE))
         }
-        dataTemp = cbind(zadaniaRegresja::DNiP, as.data.frame(varsTemp))
+        dataTemp = cbind(zadaniaRegresja::FSW, as.data.frame(varsTemp))
       } else {
         if (!all(all.vars(args$content[[3]]) %in% "RAVEN_AGE")) {
           cat("No other variable than `RAVEN_AGE` can appear on the right side the model formula unless you provide expressions describing how to compute them by specifying the `vars` argument.\n")
           return(invisible(FALSE))
         }
-        dataTemp = zadaniaRegresja::DNiP
+        dataTemp = zadaniaRegresja::FSW
       }
       mTemp = tryCatch(
         lm(args$content, dataTemp),

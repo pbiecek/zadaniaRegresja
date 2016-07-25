@@ -3,10 +3,10 @@
 \docType{data}
 \name{answers}
 \alias{answers}
-\title{The list containg the answers.}
+\title{The list that contains the answers.}
 \format{list}
 \description{
-The list containg the answers.
+The list that contains the answers.
 }
 \keyword{datasets}
 

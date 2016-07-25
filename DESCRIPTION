@@ -1,7 +1,7 @@
 Package: zadaniaRegresja
 Type: Package
 Title: Do uzupełnienia
-Version: 0.2.2
+Version: 0.2.3
 Authors@R: c(
   person("Tomasz", "Żółtak", email = "tomek@zozlak.org", role = c("aut", "cre")),
   person("Mateusz", "Żółtak", role = c("aut", "ctb")),
